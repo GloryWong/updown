@@ -9,7 +9,7 @@ import { retry as retryPlugin } from '@octokit/plugin-retry'
 import { exit } from 'node:process'
 import { askHiddenInput } from './utils/askHiddenInput.ts'
 
-async function main() {
+export async function upload() {
   try {
     // Enter gist id
     await fs.ensureFile(GIST_ID_FILE)
@@ -105,5 +105,3 @@ async function main() {
     exit(1)
   }
 }
-
-main()
