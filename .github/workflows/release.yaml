@@ -9,9 +9,6 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  APP_NAME: updown
-
 permissions:
   actions: read
   contents: write
@@ -54,12 +51,12 @@ jobs:
 
       - name: Compile binary
         run: |
-          deno compile --allow-all --no-check --include version.txt --target ${{ matrix.target }} --output $APP_NAME.${{ matrix.target }} cli.ts
+          deno compile --allow-all --no-check --include version.txt --target ${{ matrix.target }} --output updown.${{ matrix.target }} cli.ts
           echo "Compiled for ${{ matrix.target }}"
 
       - name: Compress binary
         run: |
-          BIN_NAME=$APP_NAME.${{ matrix.target }}
+          BIN_NAME=updown.${{ matrix.target }}
           tar -czf ${BIN_NAME}.tar.gz $BIN_NAME
           ls -l ${BIN_NAME}.tar.gz
 
@@ -67,7 +64,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ASSET_NAME=$APP_NAME.${{ matrix.target }}.tar.gz
+          ASSET_NAME=updown.${{ matrix.target }}.tar.gz
           gh release upload ${{ needs.release-please.outputs.tag_name }} $ASSET_NAME
 
   update-homebrew:
@@ -88,7 +85,7 @@ jobs:
       - name: Update Homebrew Formula for all platforms
         run: |
           cd homebrew-tap/Formula
-          FORMULA_FILE="$APP_NAME.rb"
+          FORMULA_FILE="updown.rb"
           RELEASE_TAG="${{ needs.release-please.outputs.tag_name }}"
 
           # Update the version in the formula.
@@ -103,8 +100,8 @@ jobs:
           #  - Update the URL line.
           #  - Update the checksum on the line immediately following the URL.
           for platform in "${platforms[@]}"; do
-            ASSET="$APP_NAME.${platform}.tar.gz"
-            URL="https://github.com/GloryWong/$APP_NAME/releases/download/${RELEASE_TAG}/${ASSET}"
+            ASSET="updown.${platform}.tar.gz"
+            URL="https://github.com/GloryWong/updown/releases/download/${RELEASE_TAG}/${ASSET}"
             echo "Processing platform: ${platform}"
 
             # Download the asset
@@ -126,6 +123,8 @@ jobs:
               n
               s|sha256 \"[^\"]*\"|      sha256 \"${CHECKSUM}\"|
             }" "${FORMULA_FILE}"
+
+            echo "\n"
           done
 
           echo "Final updated formula:"
@@ -136,6 +135,6 @@ jobs:
           cd homebrew-tap
           git config user.name "GloryWong"
           git config user.email "glorywong1001@gmail.com"
-          git add Formula/$APP_NAME.rb
-          git commit -m "Update $APP_NAME formula for release ${RELEASE_TAG}" || echo "No changes to commit."
+          git add Formula/updown.rb
+          git commit -m "Update updown formula for release ${RELEASE_TAG}" || echo "No changes to commit."
           git push https://GloryWong:${{ secrets.HOMEBREW_GITHUB_TOKEN }}@github.com/GloryWong/homebrew-tap.git HEAD:master
