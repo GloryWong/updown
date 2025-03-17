@@ -110,7 +110,7 @@ jobs:
             echo "Processing platform: ${platform}"
 
             # Download the asset
-            gh release download ${RELEASE_TAG} --repo GloryWong/$APP_NAME --pattern '${ASSET}'
+            gh release download ${RELEASE_TAG} --repo GloryWong/$APP_NAME --pattern ${ASSET}
 
             # Compute the SHA256 checksum
             CHECKSUM=$(sha256sum "${ASSET}" | awk '{print $1}')
