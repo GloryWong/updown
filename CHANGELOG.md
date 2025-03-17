@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/GloryWong/updown/compare/v1.0.3...v1.0.4) (2025-03-17)
+
+
+### Bug Fixes
+
+* **ci:** download private release assets ([456c02d](https://github.com/GloryWong/updown/commit/456c02deda11e2a9467053109e67c3530a7025d5))
+
 ## [1.0.3](https://github.com/GloryWong/updown/compare/v1.0.2...v1.0.3) (2025-03-17)
 
 
