@@ -1,0 +1,8 @@
+{
+  "version": "0.0.0",
+  "dependencies": {
+    "@octokit/plugin-retry": "^7.1.4",
+    "@octokit/rest": "^21.1.1",
+    "zx": "^8.4.1"
+  }
+}
