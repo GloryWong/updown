@@ -4,6 +4,10 @@ interface CommonOptions {
    */
   root: string
   /**
+   * Updown tmp directory
+   */
+  tmp: string
+  /**
    * OS home directory
    */
   home: string
@@ -17,7 +21,7 @@ type GetFilePath = (options: GetFilePathOptions) => Promise<string> | string
 
 interface BeforeUploadOptions extends CommonOptions {
   /**
-   * The uploaded file path
+   * The local file path
    */
   filePath: string
 }
@@ -30,7 +34,7 @@ export interface Config {
    */
   name: string
   /**
-   * Get the uploaded file path
+   * Get the local file path
    */
   getFilePath: GetFilePath
   /**
@@ -40,3 +44,8 @@ export interface Config {
 }
 
 export type Configs = Config[]
+
+/**
+ * { name: checksum }
+ */
+type Checksums = Record<string, string>

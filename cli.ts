@@ -1,3 +1,5 @@
+#!/usr/bin/env zx
+
 import { minimist, path } from 'zx'
 import { upload } from './upload.ts'
 

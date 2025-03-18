@@ -3,7 +3,7 @@ import { $, path, spinner, which } from 'zx'
 
 export default {
   name: 'Brewfile',
-  getFilePath: ({ root }) => path.join(root, 'Brewfile'),
+  getFilePath: ({ tmp }) => path.join(tmp, 'Brewfile'),
   beforeUpload: async ({ filePath }) => {
     const brew = await which('brew', { nothrow: true })
     if (brew === null) {

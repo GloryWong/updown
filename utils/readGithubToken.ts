@@ -1,6 +1,6 @@
 import { fs } from 'zx'
 import { GITHUB_TOKEN_FILE } from '../constants.ts'
-import { askHiddenInput } from '../utils/askHiddenInput.ts'
+import { askHiddenInput } from './askHiddenInput.ts'
 
 export async function readGithubToken() {
   await fs.ensureFile(GITHUB_TOKEN_FILE)
