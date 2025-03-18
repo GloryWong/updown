@@ -19,9 +19,9 @@ Commands:
 
 async function showVersion() {
   if (import.meta.dirname) {
-    const version = await Deno.readTextFile(
+    const version = (await Deno.readTextFile(
       path.join(import.meta.dirname, 'version.txt'),
-    )
+    )).trim()
     console.log(version)
   }
 }
