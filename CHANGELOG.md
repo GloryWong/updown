@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/GloryWong/updown/compare/v1.0.5...v1.1.0) (2025-03-18)
+
+
+### Features
+
+* upload files together && update prints ([cca050b](https://github.com/GloryWong/updown/commit/cca050b6d263532740ff445dc7ddca0cd1444fdb))
+
+
+### Bug Fixes
+
+* add config for tabby config ([f3a096e](https://github.com/GloryWong/updown/commit/f3a096e1e9232d7cd2093a8ad228b8a2bbed1795))
+
 ## [1.0.5](https://github.com/GloryWong/updown/compare/v1.0.4...v1.0.5) (2025-03-18)
 
 
