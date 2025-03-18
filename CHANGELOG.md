@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/GloryWong/updown/compare/v1.1.0...v1.2.0) (2025-03-18)
+
+
+### Features
+
+* do not upload unchanged files ([5f4a67d](https://github.com/GloryWong/updown/commit/5f4a67d81aaadd7278683ede2d81c996c15e76cb))
+
+
+### Bug Fixes
+
+* should not upload nonexistent or empty files ([e29a36e](https://github.com/GloryWong/updown/commit/e29a36e12a34a8be8b3f019809b7cc6fa04c7ee6))
+
 ## [1.1.0](https://github.com/GloryWong/updown/compare/v1.0.5...v1.1.0) (2025-03-18)
 
 
