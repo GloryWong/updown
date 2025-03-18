@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.5](https://github.com/GloryWong/updown/compare/v1.0.4...v1.0.5) (2025-03-18)
+
+
+### Bug Fixes
+
+* add config for vimrc ([0c3c88a](https://github.com/GloryWong/updown/commit/0c3c88ae56ac04923f98b688c3a7fe2612a12c00))
+* add config for zshrc ([d9be92b](https://github.com/GloryWong/updown/commit/d9be92bd11738e73cbd26e21db246891e20c5c4f))
+* new line when printing version ([5dad678](https://github.com/GloryWong/updown/commit/5dad6781f327889014a3b731d7b99832d704a182))
+
 ## [1.0.4](https://github.com/GloryWong/updown/compare/v1.0.3...v1.0.4) (2025-03-17)
 
 
