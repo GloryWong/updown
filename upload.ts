@@ -1,6 +1,6 @@
 #!/usr/bin/env zx
 
-import { chalk, echo, fs, spinner, os } from 'zx'
+import { chalk, echo, fs, os, spinner } from 'zx'
 import configs from './configs/index.ts'
 import { GIST_ID_FILE, GITHUB_TOKEN_FILE, ROOT } from './constants.ts'
 import { Octokit } from '@octokit/rest'
@@ -32,7 +32,7 @@ export async function upload() {
     const home = os.homedir()
 
     // Prepare for upload
-    const files: {name: string, content: string}[] = []
+    const files: { name: string; content: string }[] = []
     console.log()
     console.log('Prepare for upload:')
     console.log()
@@ -43,16 +43,24 @@ export async function upload() {
         if (beforeUpload) {
           await beforeUpload({ root: ROOT, home, filePath })
         }
-        const content = await fs.readFile(filePath, 'utf-8')
-        files.push({ name, content })
         console.log('File local path:', filePath)
+        if (await fs.pathExists(filePath)) {
+          const content = await fs.readFile(filePath, 'utf-8')
+          if (content.trim()) {
+            files.push({ name, content })
+          } else {
+            console.warn(chalk.yellow('File is empty!'))
+          }
+        } else {
+          console.warn(chalk.yellow('File does not exist!'))
+        }
       } catch (error) {
         console.error(
           chalk.red(
             'Error: Something went wrong prepare for uploading',
             name,
             '.',
-            'It won\'t be uploaded.',
+            "It won't be uploaded.",
             error,
           ),
         )
@@ -68,7 +76,7 @@ export async function upload() {
       return pre
     }, {} as Record<string, { content: string }>)
     try {
-      console.log('Upload:', files.map(v => v.name).join(', '))
+      console.log('Upload:', files.map((v) => v.name).join(', '))
       let gistUrl
 
       await spinner(`Uploading...`, async () => {
@@ -79,11 +87,11 @@ export async function upload() {
           if (error.response.status === 404) {
             gistIdValid &&= false
           }
-  
+
           if (error.response.status === 401) {
             tokenValid &&= false
           }
-  
+
           throw new Error(
             `Failed to upload. HTTP status code: ${error.response.status}`,
           )
@@ -103,7 +111,9 @@ export async function upload() {
     if (gistIdValid) {
       writeGistId(gistId)
     } else {
-      console.error(chalk.red('Error: Gist with id', `\`${gistId}\``, 'not found!'))
+      console.error(
+        chalk.red('Error: Gist with id', `\`${gistId}\``, 'not found!'),
+      )
       writeGistId('')
     }
     if (tokenValid) {

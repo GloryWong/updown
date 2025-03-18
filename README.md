@@ -27,8 +27,7 @@ updown --help
 
 ## Updating
 
-To upgrade to the latest version when a new release is available,
-simply run:
+To upgrade to the latest version when a new release is available, simply run:
 
 ```bash
 brew update
