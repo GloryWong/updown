@@ -1,7 +1,7 @@
-import { os, path } from 'zx'
+import { path } from 'zx'
 import { Config } from '../types/configs.d.ts'
 
 export default {
   name: 'vimrc',
-  beforeUpload: () => path.join(os.homedir(), '.vimrc'),
+  getFilePath: ({ home }) => path.join(home, '.vimrc'),
 } satisfies Config

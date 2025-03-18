@@ -3,8 +3,7 @@ import { Config } from '../types/configs.d.ts'
 
 export default {
   name: 'tabby-config.yaml',
-  beforeUpload: () => {
-    const home = os.homedir()
+  getFilePath: function({ home }) {
     const configFile = 'config.yaml'
     const fileLocations = [
       {
