@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/GloryWong/updown/compare/v1.2.0...v1.2.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* add config of raycast ([ef578fb](https://github.com/GloryWong/updown/commit/ef578fbca81e4189068b5944d7395d472242245b))
+
 ## [1.2.0](https://github.com/GloryWong/updown/compare/v1.1.0...v1.2.0) (2025-03-18)
 
 
