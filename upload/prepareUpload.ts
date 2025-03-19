@@ -21,7 +21,7 @@ async function validateFile(name: string, filePath: string) {
     result.message = name + ' is empty.'
     return result
   }
-  
+
   if (await verifyChecksum(name, filePath)) {
     result.message = name + ' has not changed.'
     result.warn = false
