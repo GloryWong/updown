@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/GloryWong/updown/compare/v1.2.1...v1.2.2) (2025-03-22)
+
+
+### Bug Fixes
+
+* add config of npmrc ([84ca2d4](https://github.com/GloryWong/updown/commit/84ca2d466762b2e58ea4f1cef0d8433851f9ce13))
+* **deps:** update dependency @octokit/plugin-retry to ^7.2.0 ([#11](https://github.com/GloryWong/updown/issues/11)) ([81bbaba](https://github.com/GloryWong/updown/commit/81bbababffaf12df3876c0e2f30c282c570d8b0a))
+
 ## [1.2.1](https://github.com/GloryWong/updown/compare/v1.2.0...v1.2.1) (2025-03-19)
 
 
