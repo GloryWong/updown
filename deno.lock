@@ -3,7 +3,7 @@
   "specifiers": {
     "jsr:@std/assert@1": "1.0.11",
     "jsr:@std/internal@^1.0.5": "1.0.5",
-    "npm:@octokit/plugin-retry@^7.1.4": "7.1.4_@octokit+core@6.1.4",
+    "npm:@octokit/plugin-retry@^7.2.0": "7.2.0_@octokit+core@6.1.4",
     "npm:@octokit/rest@^21.1.1": "21.1.1_@octokit+core@6.1.4",
     "npm:zx@^8.4.1": "8.4.1"
   },
@@ -72,8 +72,8 @@
         "@octokit/types"
       ]
     },
-    "@octokit/plugin-retry@7.1.4_@octokit+core@6.1.4": {
-      "integrity": "sha512-7AIP4p9TttKN7ctygG4BtR7rrB0anZqoU9ThXFk8nETqIfvgPUANTSYHqWYknK7W3isw59LpZeLI8pcEwiJdRg==",
+    "@octokit/plugin-retry@7.2.0_@octokit+core@6.1.4": {
+      "integrity": "sha512-psMbEYb/Fh+V+ZaFo8J16QiFz4sVTv3GntCSU+hYqzHiMdc3P+hhHLVv+dJt0PGIPAGoIA5u+J2DCJdK6lEPsQ==",
       "dependencies": [
         "@octokit/core",
         "@octokit/request-error",
@@ -134,7 +134,7 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@octokit/plugin-retry@^7.1.4",
+        "npm:@octokit/plugin-retry@^7.2.0",
         "npm:@octokit/rest@^21.1.1",
         "npm:zx@^8.4.1"
       ]
