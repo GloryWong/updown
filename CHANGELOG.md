@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/GloryWong/updown/compare/v1.2.3...v1.2.4) (2025-03-23)
+
+
+### Bug Fixes
+
+* add config of gitconfig ([2aeb1bb](https://github.com/GloryWong/updown/commit/2aeb1bb7c73e24aaf365f4e258d1dd45e3547477))
+
 ## [1.2.3](https://github.com/GloryWong/updown/compare/v1.2.2...v1.2.3) (2025-03-23)
 
 
