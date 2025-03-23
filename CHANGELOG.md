@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/GloryWong/updown/compare/v1.2.2...v1.2.3) (2025-03-23)
+
+
+### Bug Fixes
+
+* add config of clash verge rev ([0f45c34](https://github.com/GloryWong/updown/commit/0f45c34d89abc7769f9c847264242d666469eb2c))
+
 ## [1.2.2](https://github.com/GloryWong/updown/compare/v1.2.1...v1.2.2) (2025-03-22)
 
 
