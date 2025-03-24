@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/GloryWong/updown/compare/v1.2.4...v1.2.5) (2025-03-24)
+
+
+### Bug Fixes
+
+* add config of pnpm global package json ([334a78d](https://github.com/GloryWong/updown/commit/334a78d41a1a681f2ff343259ca6c488d1be5104))
+
 ## [1.2.4](https://github.com/GloryWong/updown/compare/v1.2.3...v1.2.4) (2025-03-23)
 
 
