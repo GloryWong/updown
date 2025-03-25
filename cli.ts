@@ -2,6 +2,7 @@
 
 import { minimist, path } from 'zx'
 import { upload } from './upload.ts'
+import { setEnv } from './utils/envs.ts'
 
 function showHelp() {
   console.log(`
@@ -12,6 +13,7 @@ Upload or download files to or from GitHub Gist
 Options:
   --help, -h                Show this help message
   --version, -v             Show version
+  --force-upload            Upload without checking file change
 
 Commands:
   upload                    Upload files to Github Gist
@@ -37,6 +39,9 @@ async function main() {
   })
 
   if (argv['_'].includes('upload')) {
+    if (argv['force-upload']) {
+      setEnv('UPDOWN_UPLOAD_FORCE', true)
+    }
     await upload()
     return
   }

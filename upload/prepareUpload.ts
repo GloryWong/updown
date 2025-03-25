@@ -2,6 +2,7 @@ import { chalk, fs, os, spinner } from 'zx'
 import { ROOT, TMP_PATH } from '../constants.ts'
 import { Configs } from '../types/configs.d.ts'
 import { verifyChecksum } from '../utils/verifyChecksum.ts'
+import { getEnv } from '../utils/envs.ts'
 
 async function validateFile(name: string, filePath: string) {
   const result: {
@@ -22,7 +23,7 @@ async function validateFile(name: string, filePath: string) {
     return result
   }
 
-  if (await verifyChecksum(name, filePath)) {
+  if (!getEnv('UPDOWN_UPLOAD_FORCE') && await verifyChecksum(name, filePath)) {
     result.message = name + ' has not changed.'
     result.warn = false
     return result
@@ -40,11 +41,12 @@ export async function prepareUpload(configs: Configs) {
   const files: { name: string; content: string; path: string }[] = []
   const home = os.homedir()
   console.log('Prepare for upload:')
+  getEnv('UPDOWN_UPLOAD_FORCE') && console.log(chalk.yellow('Upload all files without checking their changes'))
   console.log()
 
   for (const { name, getFilePath, beforeUpload } of configs) {
     try {
-      console.log('[', chalk.bold(name), ']')
+      console.log(`[${name}]`)
 
       const filePath = await getFilePath({ root: ROOT, home, tmp: TMP_PATH })
 

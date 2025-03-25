@@ -30,7 +30,7 @@ export async function toUpload(
       userAgent: 'updown',
     })
 
-    console.log('Upload:', files.map((v) => v.name).join(', '))
+    console.log(`Upload ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
 
     await spinner(`Uploading...`, async () => {
       const rsp = await octokit.rest.gists.update({
