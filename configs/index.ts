@@ -8,6 +8,7 @@ import pnpmGlobalPkgJson from './pnpm-global-pkg-json.ts'
 import raycast from './raycast.ts'
 import tabbyConfig from './tabby-config.ts'
 import vimrc from './vimrc.ts'
+import zeroOmegaOptions from './zero-omega-options.ts'
 import zshrc from './zshrc.ts'
 
 const configs: Configs = [
@@ -20,7 +21,8 @@ const configs: Configs = [
   clashVergeRevConfig,
   gitconfig,
   pnpmGlobalPkgJson,
-  nvim
+  nvim,
+  zeroOmegaOptions
 ]
 
 export default configs
