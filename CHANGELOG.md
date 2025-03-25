@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/GloryWong/updown/compare/v1.2.5...v1.3.0) (2025-03-25)
+
+
+### Features
+
+* support force upload without checking file changes ([cabac31](https://github.com/GloryWong/updown/commit/cabac317fceb330d9c88219c9664556c31eabc32))
+
+
+### Bug Fixes
+
+* add config of neovim ([a2d6c51](https://github.com/GloryWong/updown/commit/a2d6c51cebb626f24f6cc209bf9860fc05d9109c))
+* add config of zeroomegaoptions ([a6632b4](https://github.com/GloryWong/updown/commit/a6632b48c9dc4a7cdee80d617b5de04dceaa93bd))
+
 ## [1.2.5](https://github.com/GloryWong/updown/compare/v1.2.4...v1.2.5) (2025-03-24)
 
 
