@@ -1,4 +1,4 @@
-import { chalk, fs, os } from 'zx'
+import { chalk, fs, os, spinner } from 'zx'
 import { ROOT, TMP_PATH } from '../constants.ts'
 import { Configs } from '../types/configs.d.ts'
 import { verifyChecksum } from '../utils/verifyChecksum.ts'
@@ -53,10 +53,10 @@ export async function prepareUpload(configs: Configs) {
       }
 
       console.log('Local file path:', filePath)
-      const { valid, message, content, warn } = await validateFile(
+      const { valid, message, content, warn } = await spinner('Validating file path...', () => validateFile(
         name,
         filePath,
-      )
+      ))
       if (valid) {
         files.push({ name, content, path: filePath })
       } else {
