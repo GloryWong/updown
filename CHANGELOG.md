@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/GloryWong/updown/compare/v1.3.1...v1.4.0) (2025-03-27)
+
+
+### Features
+
+* add options for interactive mode and set gist id && cli defaults to non-interactive mode ([5040414](https://github.com/GloryWong/updown/commit/5040414379734af14e925c55a1e8bb65762a2b79))
+
 ## [1.3.1](https://github.com/GloryWong/updown/compare/v1.3.0...v1.3.1) (2025-03-27)
 
 
