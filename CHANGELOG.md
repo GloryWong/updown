@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/GloryWong/updown/compare/v1.4.0...v1.4.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* gist-id option && reset token ([3d9e3d9](https://github.com/GloryWong/updown/commit/3d9e3d97689c402ba08eb6e2c5de3c33a7871347))
+
 ## [1.4.0](https://github.com/GloryWong/updown/compare/v1.3.1...v1.4.0) (2025-03-27)
 
 
