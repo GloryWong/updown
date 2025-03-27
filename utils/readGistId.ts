@@ -2,10 +2,14 @@ import { fs, question } from 'zx'
 import { GIST_ID_FILE } from '../constants.ts'
 import { confirm } from './confirm.ts'
 import { getEnv } from './envs.ts'
+import { writeGistId } from './writeGistId.ts'
 
 export async function readGistId() {
   const envGistId = getEnv('UPDOWN_GIST_ID')
-  if (envGistId) return envGistId
+  if (envGistId) {
+    await writeGistId(envGistId)
+    return envGistId
+  }
 
   await fs.ensureFile(GIST_ID_FILE)
   let gistId: string | null = (await fs.readFile(GIST_ID_FILE, 'utf-8'))
@@ -24,6 +28,7 @@ export async function readGistId() {
       )
     }
   
+    await writeGistId(gistId)
     return gistId
   }
 

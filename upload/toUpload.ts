@@ -12,7 +12,6 @@ export async function toUpload(
 ) {
   if (!files.length) {
     console.log('No file needs to be uploaded.')
-    await writeGistId(gistId)
     return
   }
 
@@ -60,17 +59,13 @@ export async function toUpload(
     console.error(chalk.red('Error: Fail to upload.', error))
   }
 
-  if (gistIdValid) {
-    await writeGistId(gistId)
-  } else {
+  if (!gistIdValid) {
     console.error(
       chalk.red('Error: Gist with id', `\`${gistId}\``, 'not found!'),
     )
     await writeGistId('')
   }
-  if (tokenValid) {
-    await writeGithubToken(token)
-  } else {
+  if (!tokenValid) {
     console.error(
       chalk.red(
         'Error: Invalid Github token (Make sure the gist write permission is granted)',

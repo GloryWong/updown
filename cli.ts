@@ -20,11 +20,11 @@ Options:
   --force-upload            Upload without checking file change
   --interactive, -i         Interaction mode. Enable prompts
   --gist-id                 Set gist id
+  --reset-token             Reset token. Must be used together with --interactive to set a new token
 
 Environment variables:
-  UPDOWN_UPLOAD_FORCE       When true, it acts the same as --force-upload
-  UPDOWN_INTERACTIVE        When true, it acts the same as --interactive
-  UPDOWN_GIST_ID            Set gist id
+  UPDOWN_UPLOAD_FORCE       The same to --force-upload
+  UPDOWN_GIST_ID            The same to --gist-id
 `)
 }
 
@@ -39,7 +39,7 @@ async function showVersion() {
 
 async function main() {
   const argv = minimist(Deno.args, {
-    boolean: ['help', 'version', 'interactive', 'force-upload'],
+    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token'],
     string: ['gist-id'],
     alias: {
       h: 'help',
@@ -56,6 +56,9 @@ async function main() {
   }
   if (argv['gist-id']) {
     setEnv('UPDOWN_GIST_ID', argv['gist-id'])
+  }
+  if (argv['reset-token']) {
+    setEnv('UPDOWN_RESET_TOKEN', true)
   }
 
   if (argv['_'].includes('upload')) {
