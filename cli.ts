@@ -10,14 +10,21 @@ Usage: updown [options] [command]
 
 Upload or download files to or from GitHub Gist
 
+Commands:
+  upload                    Upload files to Github Gist
+  download                  Download files from Github Gist (Unsupported yet)
+
 Options:
   --help, -h                Show this help message
   --version, -v             Show version
   --force-upload            Upload without checking file change
+  --interactive, -i         Interaction mode. Enable prompts
+  --gist-id                 Set gist id
 
-Commands:
-  upload                    Upload files to Github Gist
-  download                  Download files from Github Gist (Unsupported yet)
+Environment variables:
+  UPDOWN_UPLOAD_FORCE       When true, it acts the same as --force-upload
+  UPDOWN_INTERACTIVE        When true, it acts the same as --interactive
+  UPDOWN_GIST_ID            Set gist id
 `)
 }
 
@@ -32,16 +39,26 @@ async function showVersion() {
 
 async function main() {
   const argv = minimist(Deno.args, {
+    boolean: ['help', 'version', 'interactive', 'force-upload'],
+    string: ['gist-id'],
     alias: {
       h: 'help',
       v: 'version',
+      i: 'interactive'
     },
   })
 
+  if (argv['interactive']) {
+    setEnv('UPDOWN_INTERACTIVE', true)
+  }
+  if (argv['force-upload']) {
+    setEnv('UPDOWN_UPLOAD_FORCE', true)
+  }
+  if (argv['gist-id']) {
+    setEnv('UPDOWN_GIST_ID', argv['gist-id'])
+  }
+
   if (argv['_'].includes('upload')) {
-    if (argv['force-upload']) {
-      setEnv('UPDOWN_UPLOAD_FORCE', true)
-    }
     await upload()
     return
   }

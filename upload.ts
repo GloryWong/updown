@@ -1,6 +1,5 @@
-import { chalk, echo } from 'zx'
+import { chalk } from 'zx'
 import configs from './configs/index.ts'
-import { exit } from 'node:process'
 import { readGistId } from './utils/readGistId.ts'
 import { readGithubToken } from './utils/readGithubToken.ts'
 import { validateConfigs } from './utils/validateConfigs.ts'
@@ -11,8 +10,8 @@ export async function upload() {
   try {
     const messages = validateConfigs(configs)
     if (messages.length) {
-      echo(chalk.red('Error: Invalid configs.', messages.join('; ')))
-      exit(1)
+      console.error(chalk.red('Error: Invalid configs.', messages.join('; ')))
+      Deno.exit(1)
     }
 
     const gistId = await readGistId()
@@ -21,7 +20,6 @@ export async function upload() {
 
     // Prepare for upload
     const files = await prepareUpload(configs)
-    console.log()
 
     // Upload
     await toUpload(gistId, token, files)
@@ -30,7 +28,7 @@ export async function upload() {
     console.log('Done!')
   } catch (error) {
     console.log()
-    echo(chalk.red('Error:', error))
-    exit(1)
+    console.error(chalk.red('Error:', error))
+    Deno.exit(1)
   }
 }

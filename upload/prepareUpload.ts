@@ -40,6 +40,7 @@ export async function prepareUpload(configs: Configs) {
   await fs.ensureDir(TMP_PATH)
   const files: { name: string; content: string; path: string }[] = []
   const home = os.homedir()
+  const interactive = !!getEnv('UPDOWN_INTERACTIVE')
   console.log('Prepare for upload:')
   getEnv('UPDOWN_UPLOAD_FORCE') && console.log(chalk.yellow('Upload all files without checking their changes'))
   console.log()
@@ -48,10 +49,10 @@ export async function prepareUpload(configs: Configs) {
     try {
       console.log(`[${name}]`)
 
-      const filePath = await getFilePath({ root: ROOT, home, tmp: TMP_PATH })
+      const filePath = await getFilePath({ root: ROOT, home, tmp: TMP_PATH, interactive })
 
       if (beforeUpload) {
-        await beforeUpload({ root: ROOT, home, tmp: TMP_PATH, filePath })
+        await beforeUpload({ root: ROOT, home, tmp: TMP_PATH, interactive, filePath })
       }
 
       console.log('Local file path:', filePath)

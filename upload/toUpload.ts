@@ -12,6 +12,7 @@ export async function toUpload(
 ) {
   if (!files.length) {
     console.log('No file needs to be uploaded.')
+    await writeGistId(gistId)
     return
   }
 

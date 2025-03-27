@@ -25,7 +25,7 @@ export function askHiddenInput(question: string): Promise<string> {
         resolve(input)
       } else if (char === '\u0003') {
         // Handle Ctrl+C
-        process.exit()
+        Deno.exit()
       } else {
         input += char
         stdout.write(Array(char.length).fill('*').join('')) // Mask input
