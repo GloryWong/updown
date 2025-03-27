@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/GloryWong/updown/compare/v1.3.0...v1.3.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* add config of vscode-ext and vscode-settings ([9bb0f79](https://github.com/GloryWong/updown/commit/9bb0f795a277f089dcf06c1aa1204709d302eec3))
+
 ## [1.3.0](https://github.com/GloryWong/updown/compare/v1.2.5...v1.3.0) (2025-03-25)
 
 
