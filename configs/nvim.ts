@@ -11,15 +11,16 @@ export default {
       throw new Error(`${NVM_CONFIG_DIR} does not exist`)
     }
 
-    const { ok, stderr } = await spinner(
+    const { ok, message } = await spinner(
       'Archiving NeoVim config...',
       () =>
         $({
           nothrow: true,
-        })`tar --exclude-vcs -c ${NVM_CONFIG_DIR} | gzip -n > ${filePath}`,
+          cwd: NVM_CONFIG_DIR
+        })`tar --exclude-vcs -cf - . | gzip -nc > ${filePath}`,
     )
     if (!ok) {
-      throw new Error(`Failed to archive NeoVim config. ${stderr}`)
+      throw new Error(`Failed to archive NeoVim config. ${message}`)
     }
 
     console.log(`NeoVim config archived successfully.`)

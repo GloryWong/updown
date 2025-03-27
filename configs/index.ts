@@ -8,6 +8,8 @@ import pnpmGlobalPkgJson from './pnpm-global-pkg-json.ts'
 import raycast from './raycast.ts'
 import tabbyConfig from './tabby-config.ts'
 import vimrc from './vimrc.ts'
+import vscodeExt from './vscode-ext.ts'
+import vscodeSettings from './vscode-settings.ts'
 import zeroOmegaOptions from './zero-omega-options.ts'
 import zshrc from './zshrc.ts'
 
@@ -22,7 +24,9 @@ const configs: Configs = [
   gitconfig,
   pnpmGlobalPkgJson,
   nvim,
-  zeroOmegaOptions
+  zeroOmegaOptions,
+  vscodeSettings,
+  vscodeExt
 ]
 
 export default configs

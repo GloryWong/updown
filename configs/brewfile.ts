@@ -7,7 +7,7 @@ export default {
   beforeUpload: async ({ filePath }) => {
     const brew = await which('brew', { nothrow: true })
     if (brew === null) {
-      const { ok, stderr } = await spinner(
+      const { ok, message } = await spinner(
         'Homebrew is not installed. Installing...',
         () =>
           $({
@@ -15,7 +15,7 @@ export default {
           })`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`,
       )
       if (!ok) {
-        throw new Error(`Failed to download or install Homebrew. ${stderr}`)
+        throw new Error(`Failed to download or install Homebrew. ${message}`)
       }
       console.log('Homebrew installed successfully!')
     }
@@ -26,7 +26,7 @@ export default {
       () => $({ nothrow: true })`brew bundle dump --force --file=${filePath}`,
     )
     if (!output.ok) {
-      throw new Error(`Failed to dump Brewfile. ${output.stderr}`)
+      throw new Error(`Failed to dump Brewfile. ${output.message}`)
     }
     console.log(`Brewfile successfully dumped at ${filePath}`)
   },

@@ -13,13 +13,13 @@ export default {
       throw new Error(`${RAW_FILE_PATH} does not exist`)
     }
 
-    const { ok, stderr } = await spinner(
+    const { ok, message } = await spinner(
       `Compressing ${FILE_NAME}...`,
       () => $({ nothrow: true })`gzip -nc ${RAW_FILE_PATH} > ${filePath}`,
     )
 
     if (!ok) {
-      throw new Error(`Failed to compress ${FILE_NAME}. ${stderr}`)
+      throw new Error(`Failed to compress ${FILE_NAME}. ${message}`)
     }
 
     console.log(`${FILE_NAME} compressed successfully.`)
