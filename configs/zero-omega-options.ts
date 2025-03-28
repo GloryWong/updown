@@ -1,5 +1,6 @@
-import { $, fs, path, spinner } from 'zx'
+import { fs, path } from 'zx'
 import { Config } from '../types/configs.d.ts'
+import { spinnerExec } from '../utils/spinnerExec.ts'
 
 const FILE_NAME = 'ZeroOmegaOptions.bak'
 const FILE_NAME_GZ = `${FILE_NAME}.gz`
@@ -13,15 +14,11 @@ export default {
       throw new Error(`${RAW_FILE_PATH} does not exist`)
     }
 
-    const { ok, message } = await spinner(
+    await spinnerExec(
       `Compressing ${FILE_NAME}...`,
-      () => $({ nothrow: true })`gzip -nc ${RAW_FILE_PATH} > ${filePath}`,
+      `Failed to compress ${FILE_NAME}`,
+      `${FILE_NAME} compressed successfully.`,
+      ($) => $`gzip -nc ${RAW_FILE_PATH} > ${filePath}`,
     )
-
-    if (!ok) {
-      throw new Error(`Failed to compress ${FILE_NAME}. ${message}`)
-    }
-
-    console.log(`${FILE_NAME} compressed successfully.`)
   },
 } satisfies Config

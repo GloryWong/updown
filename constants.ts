@@ -11,4 +11,5 @@ export const ENV_SCHEME = {
   UPDOWN_INTERACTIVE: Boolean,
   UPDOWN_GIST_ID: String,
   UPDOWN_RESET_TOKEN: Boolean,
+  UPDOWN_QUIET: Boolean
 } as const

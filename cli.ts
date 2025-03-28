@@ -1,11 +1,12 @@
 #!/usr/bin/env zx
 
-import { minimist, path } from 'zx'
+import { $, minimist, path } from 'zx'
 import { upload } from './upload.ts'
 import { setEnv } from './utils/envs.ts'
+import logger from './utils/logger.ts'
 
 function showHelp() {
-  console.log(`
+  logger.logKeep(`
 Usage: updown [options] [command]
 
 Upload or download files to or from GitHub Gist
@@ -21,6 +22,7 @@ Options:
   --interactive, -i         Interaction mode. Enable prompts
   --gist-id                 Set gist id
   --reset-token             Reset token. Must be used together with --interactive to set a new token
+  --quiet                   Suppress unimportant output
 
 Environment variables:
   UPDOWN_UPLOAD_FORCE       The same to --force-upload
@@ -33,13 +35,13 @@ async function showVersion() {
     const version = (await Deno.readTextFile(
       path.join(import.meta.dirname, 'version.txt'),
     )).trim()
-    console.log(version)
+    logger.logKeep(version)
   }
 }
 
 async function main() {
   const argv = minimist(Deno.args, {
-    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token'],
+    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token', 'quiet'],
     string: ['gist-id'],
     alias: {
       h: 'help',
@@ -59,6 +61,10 @@ async function main() {
   }
   if (argv['reset-token']) {
     setEnv('UPDOWN_RESET_TOKEN', true)
+  }
+  if (argv['quiet']) {
+    $.quiet = true
+    setEnv('UPDOWN_QUIET', true)
   }
 
   if (argv['_'].includes('upload')) {

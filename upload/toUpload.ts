@@ -4,6 +4,8 @@ import { writeGistId } from '../utils/writeGistId.ts'
 import { writeGithubToken } from '../utils/writeGithubToken.ts'
 import { retry as retryPlugin } from '@octokit/plugin-retry'
 import { writeChecksums } from '../utils/writeChecksums.ts'
+import logger from '../utils/logger.ts'
+import { getEnv } from '../utils/envs.ts'
 
 export async function toUpload(
   gistId: string,
@@ -11,7 +13,7 @@ export async function toUpload(
   files: { name: string; content: string; path: string }[],
 ) {
   if (!files.length) {
-    console.log('No file needs to be uploaded.')
+    logger.log('No file needs to be uploaded.')
     return
   }
 
@@ -30,7 +32,7 @@ export async function toUpload(
       userAgent: 'updown',
     })
 
-    console.log(`Upload ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
+    logger.log(`Ready to upload ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
 
     await spinner(`Uploading...`, async () => {
       const rsp = await octokit.rest.gists.update({
@@ -53,20 +55,21 @@ export async function toUpload(
     })
 
     await writeChecksums(files)
-    console.log(chalk.green('Uploaded successfully to the Gist!'))
-    console.log('HTML URL:', gistUrl)
+    getEnv('UPDOWN_QUIET') && logger.logKeep(`Uploaded ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
+    logger.log(chalk.green('Uploaded successfully to the Gist!'))
+    logger.log('HTML URL:', gistUrl)
   } catch (error) {
-    console.error(chalk.red('Error: Fail to upload.', error))
+    logger.error(chalk.red('Error: Fail to upload.', error))
   }
 
   if (!gistIdValid) {
-    console.error(
+    logger.error(
       chalk.red('Error: Gist with id', `\`${gistId}\``, 'not found!'),
     )
     await writeGistId('')
   }
   if (!tokenValid) {
-    console.error(
+    logger.error(
       chalk.red(
         'Error: Invalid Github token (Make sure the gist write permission is granted)',
       ),

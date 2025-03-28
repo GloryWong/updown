@@ -3,6 +3,7 @@ import { GIST_ID_FILE } from '../constants.ts'
 import { confirm } from './confirm.ts'
 import { getEnv } from './envs.ts'
 import { writeGistId } from './writeGistId.ts'
+import logger from './logger.ts'
 
 export async function readGistId() {
   const envGistId = getEnv('UPDOWN_GIST_ID')
@@ -17,7 +18,7 @@ export async function readGistId() {
   
   if (getEnv('UPDOWN_INTERACTIVE')) {
     if (gistId) {
-      console.log('Found existing Gist Id', gistId)
+      logger.log('Found existing Gist Id', gistId)
       if (!(await confirm('Do you want to use it?', 'yes'))) {
         gistId = null
       }

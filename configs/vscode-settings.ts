@@ -1,5 +1,6 @@
-import { $, os, path, spinner } from 'zx'
+import { os, path } from 'zx'
 import { Config } from '../types/configs.d.ts'
+import { spinnerExec } from '../utils/spinnerExec.ts'
 
 export default {
   name: 'vscode-settings.tar.gz',
@@ -18,18 +19,14 @@ export default {
     if (!vsCodeUserDir) throw new Error(`Unsupported platform ${platform}`)
 
     const settingFiles = ['settings.json', 'keybindings.json', 'tasks.json']
-    const output = await spinner(
+    await spinnerExec(
       'Archiving setting files...',
-      () =>
+      'Failed to archive',
+      'VSCode settings archived successfully.',
+      ($) =>
         $({
-          nothrow: true,
           cwd: vsCodeUserDir.value,
         })`tar -cf - ${settingFiles} | gzip -nc > ${filePath}`,
     )
-    if (!output.ok) {
-      throw new Error(`Failed to archive. ${output.message}`)
-    }
-
-    console.log('vscode settings archived successfully.')
   },
 } satisfies Config

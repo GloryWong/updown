@@ -1,5 +1,6 @@
 import { Config } from '../types/configs.d.ts'
-import { $, fs, path, spinner } from 'zx'
+import { $, fs, path } from 'zx'
+import { spinnerExec } from '../utils/spinnerExec.ts'
 
 export default {
   name: 'nvim.tar.gz',
@@ -11,18 +12,14 @@ export default {
       throw new Error(`${NVM_CONFIG_DIR} does not exist`)
     }
 
-    const { ok, message } = await spinner(
+    await spinnerExec(
       'Archiving NeoVim config...',
-      () =>
+      'Failed to archive NeoVim config',
+      'NeoVim config archived successfully.',
+      ($) =>
         $({
-          nothrow: true,
           cwd: NVM_CONFIG_DIR
         })`tar --exclude-vcs -cf - . | gzip -nc > ${filePath}`,
     )
-    if (!ok) {
-      throw new Error(`Failed to archive NeoVim config. ${message}`)
-    }
-
-    console.log(`NeoVim config archived successfully.`)
   },
 } satisfies Config

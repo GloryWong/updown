@@ -1,6 +1,7 @@
 import { fs, path } from 'zx'
 import { Buffer } from 'node:buffer'
 import { octokit } from './octokit.ts'
+import logger from './logger.ts'
 
 interface Options {
   dir: string
@@ -40,10 +41,10 @@ export async function downloadRepoFiles(
         await fs.mkdir(path.dirname(localFilePath), { recursive: true }) // Ensure parent directories exist
 
         await fs.writeFile(localFilePath, content)
-        console.log(`Downloaded: ${data.path}`)
+        logger.log(`Downloaded: ${data.path}`)
       }
     }
   } catch (error) {
-    console.error(`Error downloading ${filePath}:`, error)
+    logger.error(`Error downloading ${filePath}:`, error)
   }
 }

@@ -3,6 +3,7 @@ import { ROOT, TMP_PATH } from '../constants.ts'
 import { Configs } from '../types/configs.d.ts'
 import { verifyChecksum } from '../utils/verifyChecksum.ts'
 import { getEnv } from '../utils/envs.ts'
+import logger from '../utils/logger.ts'
 
 async function validateFile(name: string, filePath: string) {
   const result: {
@@ -41,13 +42,13 @@ export async function prepareUpload(configs: Configs) {
   const files: { name: string; content: string; path: string }[] = []
   const home = os.homedir()
   const interactive = !!getEnv('UPDOWN_INTERACTIVE')
-  console.log('Prepare for upload:')
-  getEnv('UPDOWN_UPLOAD_FORCE') && console.log(chalk.yellow('Upload all files without checking their changes'))
-  console.log()
+  logger.log('Prepare for upload:')
+  getEnv('UPDOWN_UPLOAD_FORCE') && logger.log(chalk.yellow('Upload all files without checking their changes'))
+  logger.log()
 
   for (const { name, getFilePath, beforeUpload } of configs) {
     try {
-      console.log(`[${name}]`)
+      logger.log(`[${name}]`)
 
       const filePath = await getFilePath({ root: ROOT, home, tmp: TMP_PATH, interactive })
 
@@ -55,7 +56,7 @@ export async function prepareUpload(configs: Configs) {
         await beforeUpload({ root: ROOT, home, tmp: TMP_PATH, interactive, filePath })
       }
 
-      console.log('Local file path:', filePath)
+      logger.log('Local file path:', filePath)
       const { valid, message, content, warn } = await spinner('Validating file path...', () => validateFile(
         name,
         filePath,
@@ -64,11 +65,11 @@ export async function prepareUpload(configs: Configs) {
         files.push({ name, content, path: filePath })
       } else {
         warn
-          ? console.warn(chalk.yellow(message, 'Skip it!'))
-          : console.log(message, 'Skip it!')
+          ? logger.log(chalk.yellow(message, 'Skip it!'))
+          : logger.log(message, 'Skip it!')
       }
     } catch (error) {
-      console.error(
+      logger.error(
         chalk.red(
           'Error: Something went wrong when prepare for uploading',
           name,
@@ -77,7 +78,7 @@ export async function prepareUpload(configs: Configs) {
         ),
       )
     }
-    console.log()
+    logger.log()
   }
 
   return files
