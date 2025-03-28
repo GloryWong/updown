@@ -2,6 +2,7 @@
   "dependencies": {
     "@octokit/plugin-retry": "^7.2.0",
     "@octokit/rest": "^21.1.1",
+    "strip-ansi": "^7.1.0",
     "zx": "^8.4.1"
   }
 }

@@ -36,6 +36,6 @@ export async function readGistId() {
   if (gistId)
     return gistId
   else
-    throw new Error('Gist id not found. You can set gist id by either \
+    throw new Error('Fatal error: Gist id not found. You can set gist id by either \
 using the option --gist-id or enabling interaction mode using the option --interactive')
 }

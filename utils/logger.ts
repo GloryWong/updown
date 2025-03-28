@@ -1,4 +1,5 @@
 import { getEnv } from './envs.ts'
+import { notify } from './notify.ts'
 
 function getCurrentDateTime() {
   return new Date().toLocaleString('zh-CN')
@@ -27,6 +28,11 @@ function error(...args: Parameters<typeof console.error>) {
     console.error(getCurrentDateTimeNormalized(), ...args)
   } else {
     console.error(...args)
+  }
+
+  const text = args.join(' ')
+  if (getEnv('UPDOWN_NOTIFY') && text.toLowerCase().includes('fatal error')) {
+    notify(text, 'Updown Upload')
   }
 }
 

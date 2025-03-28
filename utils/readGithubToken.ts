@@ -25,6 +25,6 @@ export async function readGithubToken() {
   if (token)
     return token
   else
-    throw new Error('GitHub Token not found. You must set the token by enabling \
+    throw new Error('Fatal error: GitHub Token not found. You must set the token by enabling \
 interaction mode using the option --interactive')
 }

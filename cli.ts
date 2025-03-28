@@ -18,11 +18,13 @@ Commands:
 Options:
   --help, -h                Show this help message
   --version, -v             Show version
-  --force-upload            Upload without checking file change
   --interactive, -i         Interaction mode. Enable prompts
+  --force-upload            Upload without checking file change
   --gist-id                 Set gist id
   --reset-token             Reset token. Must be used together with --interactive to set a new token
-  --quiet                   Suppress unimportant output
+  --quiet                   Quiet mode. Suppress unimportant output
+  --notify                  Display notifications when fatal errors occur (MacOS only). Make sure
+                            to set Allow notifications for Script Editor in system settings
 
 Environment variables:
   UPDOWN_UPLOAD_FORCE       The same to --force-upload
@@ -41,7 +43,7 @@ async function showVersion() {
 
 async function main() {
   const argv = minimist(Deno.args, {
-    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token', 'quiet'],
+    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token', 'quiet', 'notify'],
     string: ['gist-id'],
     alias: {
       h: 'help',
@@ -65,6 +67,9 @@ async function main() {
   if (argv['quiet']) {
     $.quiet = true
     setEnv('UPDOWN_QUIET', true)
+  }
+  if (argv['notify']) {
+    setEnv('UPDOWN_NOTIFY', true)
   }
 
   if (argv['_'].includes('upload')) {
