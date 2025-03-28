@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/GloryWong/updown/compare/v1.4.1...v1.4.2) (2025-03-28)
+
+
+### Bug Fixes
+
+* customized logger supporting quiet mode ([afa5bb4](https://github.com/GloryWong/updown/commit/afa5bb4e3ac83809dad1591909f2952c07d2d981))
+
 ## [1.4.1](https://github.com/GloryWong/updown/compare/v1.4.0...v1.4.1) (2025-03-27)
 
 
