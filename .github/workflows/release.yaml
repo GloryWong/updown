@@ -38,11 +38,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: deno install --no-check --frozen
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
