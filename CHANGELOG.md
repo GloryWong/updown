@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/GloryWong/updown/compare/v1.5.1...v1.5.2) (2025-04-05)
+
+
+### Bug Fixes
+
+* ci use goreleaser ([2a8196d](https://github.com/GloryWong/updown/commit/2a8196d9e3aa70a369631cd697f0bf261b6109ef))
+
 ## [1.5.1](https://github.com/GloryWong/updown/compare/v1.5.0...v1.5.1) (2025-04-05)
 
 
