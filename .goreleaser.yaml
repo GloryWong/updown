@@ -1,0 +1,31 @@
+version: 2
+report_sizes: true
+
+builds:
+  - builder: deno
+    main: cli.ts
+    flags:
+      - --allow-all
+      - --no-check
+      - --include=version.txt
+
+archives:
+  - formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+brews:
+  - url_template: 'https://github.com/GloryWong/updown/releases/download/{{ .Tag }}/{{ .ArtifactName }}'
+    directory: Formula
+    # Caveats for the user of your binary.
+    caveats: updown --help
+    homepage: 'https://github.com/GloryWong/updown'
+    description: A CLI tool to upload or download files to or from GitHub Gist
+    license: MIT
+    test: system "#{bin}/updown --version"
+    # Repository to push the generated files to.
+    repository:
+      owner: GloryWong
+      name: homebrew-tap
+      token: '{{ .Env.HOMEBREW_GITHUB_TOKEN }}'

@@ -1,145 +1,53 @@
-name: release-publish
+name: release
+description: release to GitHub, publish to npm, publish to homebrew
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
-env:
-  APP_NAME: updown
-
 permissions:
-  actions: read
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
-  release-please:
+  release:
+    name: release and tag
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
 
-  upload-binaries:
-    needs: release-please
-    if: needs.release-please.outputs.release_created
-    name: Compile, compress, and upload binaries
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        target: [
-          x86_64-apple-darwin,
-          aarch64-apple-darwin,
-          x86_64-unknown-linux-gnu,
-          aarch64-unknown-linux-gnu,
-        ]
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-
-      - name: Compile binary
-        run: |
-          deno compile --allow-all --no-check --include version.txt --target ${{ matrix.target }} --output $APP_NAME.${{ matrix.target }} cli.ts
-          echo "Compiled for ${{ matrix.target }}"
-
-      - name: Compress binary
-        run: |
-          BIN_NAME=$APP_NAME.${{ matrix.target }}
-          tar -czf ${BIN_NAME}.tar.gz $BIN_NAME
-          ls -l ${BIN_NAME}.tar.gz
-
-      - name: Upload compressed binaries
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ASSET_NAME=$APP_NAME.${{ matrix.target }}.tar.gz
-          gh release upload ${{ needs.release-please.outputs.tag_name }} $ASSET_NAME
-
-  update-homebrew:
-    needs:
-      - release-please
-      - upload-binaries
-    if: needs.release-please.outputs.release_created
+  goreleaser:
+    needs: release
+    if: needs.release.outputs.release_created
+    name: Publish to homebrew
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Homebrew Tap Repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: GloryWong/homebrew-tap
-          token: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
-          ref: master
-          path: homebrew-tap
+          fetch-depth: 0
 
-      - name: Update Homebrew Formula for all platforms
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd homebrew-tap/Formula
-          FORMULA_FILE="$APP_NAME.rb"
-          RELEASE_TAG="${{ needs.release-please.outputs.tag_name }}"
-
-          # Update the version in the formula.
-          sed -i "s/^  version \".*\"/  version \"${RELEASE_TAG}\"/" "${FORMULA_FILE}"
-
-          # Define an array for the platforms.
-          platforms=("x86_64-apple-darwin" "aarch64-apple-darwin" "x86_64-unknown-linux-gnu" "aarch64-unknown-linux-gnu")
-
-          # Loop through each platform:
-          #  - Download the asset.
-          #  - Compute the SHA256 checksum.
-          #  - Update the URL line.
-          #  - Update the checksum on the line immediately following the URL.
-          for platform in "${platforms[@]}"; do
-            ASSET="$APP_NAME.${platform}.tar.gz"
-            URL="https://github.com/GloryWong/$APP_NAME/releases/download/${RELEASE_TAG}/${ASSET}"
-            echo "Processing platform: ${platform}"
-
-            # Download the asset
-            gh release download ${RELEASE_TAG} --repo GloryWong/$APP_NAME --pattern ${ASSET}
-
-            # Compute the SHA256 checksum
-            CHECKSUM=$(sha256sum "${ASSET}" | awk '{print $1}')
-            echo "Checksum for ${platform}: ${CHECKSUM}"
-
-            # Update the URL line in the formula for this platform.
-            # This example assumes that your formula has a unique URL line reference (e.g.,
-            # a line containing ${platform}) which we replace.
-            sed -i "s|url \".*${platform}.*\"|      url \"${URL}\"|" "${FORMULA_FILE}"
-
-            # Replace the existing checksum:
-            # Look for the URL line that contains the platform to match the correct section.
-            # Then, go to the next line and substitute the sha256 checksum with the new value.
-            sed -i "/url \".*${platform}.*\"/{
-              n
-              s|sha256 \"[^\"]*\"|      sha256 \"${CHECKSUM}\"|
-            }" "${FORMULA_FILE}"
-
-            echo "\n"
-          done
-
-          echo "Final updated formula:"
-          cat "${FORMULA_FILE}"
-
-      - name: Commit and Push Formula Changes
-        run: |
-          cd homebrew-tap
-          git config user.name "GloryWong"
-          git config user.email "glorywong1001@gmail.com"
-          git add Formula/$APP_NAME.rb
-          git commit -m "Update $APP_NAME formula for release ${RELEASE_TAG}" || echo "No changes to commit."
-          git push https://GloryWong:${{ secrets.HOMEBREW_GITHUB_TOKEN }}@github.com/GloryWong/homebrew-tap.git HEAD:master
+          HOMEBREW_GITHUB_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
