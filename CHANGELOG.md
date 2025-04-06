@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/GloryWong/updown/compare/v1.5.2...v1.5.3) (2025-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency zx to ^8.5.0 ([#24](https://github.com/GloryWong/updown/issues/24)) ([c83e575](https://github.com/GloryWong/updown/commit/c83e575057abf20856d5172b80fb81b3c9db3c66))
+
 ## [1.5.2](https://github.com/GloryWong/updown/compare/v1.5.1...v1.5.2) (2025-04-05)
 
 
