@@ -6,6 +6,7 @@ import npmrc from './npmrc.ts'
 import nvim from './nvim.ts'
 import pnpmGlobalPkgJson from './pnpm-global-pkg-json.ts'
 import raycast from './raycast.ts'
+import sigilPlugins from './sigil-plugins.ts'
 import tabbyConfig from './tabby-config.ts'
 import vimrc from './vimrc.ts'
 import vscodeExt from './vscode-ext.ts'
@@ -26,7 +27,8 @@ const configs: Configs = [
   nvim,
   zeroOmegaOptions,
   vscodeSettings,
-  vscodeExt
+  vscodeExt,
+  sigilPlugins
 ]
 
 export default configs
