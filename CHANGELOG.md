@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.3](https://github.com/GloryWong/updown/compare/v1.5.2...v1.5.3) (2025-04-14)
+
+
+### Bug Fixes
+
+* **ci:** appends service and postintaall to go releaser ([1a17e15](https://github.com/GloryWong/updown/commit/1a17e1536d0c5773062b4de064a6498c11e83d94))
+* **deps:** update all non-major dependencies ([#26](https://github.com/GloryWong/updown/issues/26)) ([a25bb0d](https://github.com/GloryWong/updown/commit/a25bb0d9d279b0fb77aa0496c525ca5ccfc20a76))
+* **deps:** update dependency zx to ^8.5.0 ([#24](https://github.com/GloryWong/updown/issues/24)) ([c83e575](https://github.com/GloryWong/updown/commit/c83e575057abf20856d5172b80fb81b3c9db3c66))
+
 ## [1.5.2](https://github.com/GloryWong/updown/compare/v1.5.1...v1.5.2) (2025-04-05)
 
 
