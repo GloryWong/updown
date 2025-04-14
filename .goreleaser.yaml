@@ -23,7 +23,17 @@ brews:
     homepage: 'https://github.com/GloryWong/updown'
     description: A CLI tool to upload or download files to or from GitHub Gist
     license: MIT
+    service: |
+      run [opt_bin/"updown", "upload", "--quiet", "--notify"]
+      run_type :cron
+      cron "0 15 * * *" # 15:00 every day
+      log_path Pathname.new(Dir.home)/".updown/logs/updown-brew-service.log"
+      error_log_path Pathname.new(Dir.home)/".updown/logs/updown-brew-service.error.log"
+      environment_variables PATH: std_service_path_env
     test: system "#{bin}/updown --version"
+    post_install: |
+      # Ensure the ~/.updown/logs directory exists
+      (Pathname.new(Dir.home)/".updown/logs").mkpath
     # Repository to push the generated files to.
     repository:
       owner: GloryWong
