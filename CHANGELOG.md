@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/GloryWong/updown/compare/v1.5.3...v1.5.4) (2025-04-14)
+
+
+### Bug Fixes
+
+* add config of sigil plugins ([1330eee](https://github.com/GloryWong/updown/commit/1330eeefc65fc387b6f30b3d8703db33330ef868))
+
 ## [1.5.3](https://github.com/GloryWong/updown/compare/v1.5.2...v1.5.3) (2025-04-14)
 
 
