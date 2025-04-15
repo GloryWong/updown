@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.5](https://github.com/GloryWong/updown/compare/v1.5.4...v1.5.5) (2025-04-15)
+
+
+### Bug Fixes
+
+* reliable config location ([127257e](https://github.com/GloryWong/updown/commit/127257ec67165cd98f2e0eda841469a4b197610a))
+
 ## [1.5.4](https://github.com/GloryWong/updown/compare/v1.5.3...v1.5.4) (2025-04-14)
 
 
