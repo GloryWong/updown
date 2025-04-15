@@ -11,12 +11,20 @@ export default {
         name: 'darwin',
         value: path.join(
           home,
-          'Library/Application Support',
-          'sigil-ebook/sigil',
+          'Library',
+          'Application Support',
+          'sigil-ebook',
+          'sigil',
         ),
       },
-      { name: 'win32', value: path.join(home, 'AppData', 'sigil-ebook/sigil') },
-      { name: 'linux', value: path.join(home, '.config', 'sigil-ebook/sigil') },
+      {
+        name: 'win32',
+        value: path.join(home, 'AppData', 'Roaming', 'sigil-ebook', 'sigil'),
+      },
+      {
+        name: 'linux',
+        value: path.join(home, '.config', 'sigil-ebook', 'sigil'),
+      },
     ]
 
     const platform = os.platform()

@@ -13,18 +13,21 @@ export async function readGithubToken() {
     if (getEnv('UPDOWN_RESET_TOKEN')) {
       token = ''
     }
-    
+
     while (!token) {
       token = await askHiddenInput('Enter your GitHub personal access token: ')
     }
-  
+
     await writeGithubToken(token)
     return token
   }
-  
-  if (token)
+
+  if (token) {
     return token
-  else
-    throw new Error('Fatal error: GitHub Token not found. You must set the token by enabling \
-interaction mode using the option --interactive')
+  } else {
+    throw new Error(
+      'Fatal error: GitHub Token not found. You must set the token by enabling \
+interaction mode using the option --interactive',
+    )
+  }
 }

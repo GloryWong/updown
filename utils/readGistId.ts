@@ -15,7 +15,7 @@ export async function readGistId() {
   await fs.ensureFile(GIST_ID_FILE)
   let gistId: string | null = (await fs.readFile(GIST_ID_FILE, 'utf-8'))
     .trim()
-  
+
   if (getEnv('UPDOWN_INTERACTIVE')) {
     if (gistId) {
       logger.log('Found existing Gist Id', gistId)
@@ -28,14 +28,17 @@ export async function readGistId() {
         'Enter the Gist id where you want to upload your files: ',
       )
     }
-  
+
     await writeGistId(gistId)
     return gistId
   }
 
-  if (gistId)
+  if (gistId) {
     return gistId
-  else
-    throw new Error('Fatal error: Gist id not found. You can set gist id by either \
-using the option --gist-id or enabling interaction mode using the option --interactive')
+  } else {
+    throw new Error(
+      'Fatal error: Gist id not found. You can set gist id by either \
+using the option --gist-id or enabling interaction mode using the option --interactive',
+    )
+  }
 }

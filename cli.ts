@@ -43,12 +43,20 @@ async function showVersion() {
 
 async function main() {
   const argv = minimist(Deno.args, {
-    boolean: ['help', 'version', 'interactive', 'force-upload', 'reset-token', 'quiet', 'notify'],
+    boolean: [
+      'help',
+      'version',
+      'interactive',
+      'force-upload',
+      'reset-token',
+      'quiet',
+      'notify',
+    ],
     string: ['gist-id'],
     alias: {
       h: 'help',
       v: 'version',
-      i: 'interactive'
+      i: 'interactive',
     },
   })
 

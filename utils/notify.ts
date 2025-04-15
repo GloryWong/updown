@@ -1,6 +1,6 @@
 import { $, chalk, os } from 'zx'
 import logger from './logger.ts'
-import stripAnsi from "strip-ansi";
+import stripAnsi from 'strip-ansi'
 
 export function notify(text: string, title: string) {
   // Support MacOS only
@@ -12,7 +12,9 @@ export function notify(text: string, title: string) {
     return
   }
 
-  const script = `display notification "${stripAnsi(text)}" with title "${title}"`
+  const script = `display notification "${
+    stripAnsi(text)
+  }" with title "${title}"`
   const { ok, message } = $.sync({
     nothrow: true,
   })`osascript -e ${script}`

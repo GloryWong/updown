@@ -28,7 +28,7 @@ const configs: Configs = [
   zeroOmegaOptions,
   vscodeSettings,
   vscodeExt,
-  sigilPlugins
+  sigilPlugins,
 ]
 
 export default configs

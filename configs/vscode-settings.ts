@@ -9,10 +9,16 @@ export default {
     const vsCodeUserDirs = [
       {
         name: 'darwin',
-        value: path.join(home, 'Library/Application Support/Code/User'),
+        value: path.join(
+          home,
+          'Library',
+          'Application Support',
+          'Code',
+          'User',
+        ),
       },
-      { name: 'win32', value: path.join(home, 'AppData/Code/User') },
-      { name: 'linux', value: path.join(home, '.config/Code/User') },
+      { name: 'win32', value: path.join(home, 'AppData', 'Code', 'User') },
+      { name: 'linux', value: path.join(home, '.config', 'Code', 'User') },
     ]
     const platform = os.platform()
     const vsCodeUserDir = vsCodeUserDirs.find(({ name }) => platform === name)

@@ -32,7 +32,10 @@ export async function toUpload(
       userAgent: 'updown',
     })
 
-    logger.log(`Ready to upload ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
+    logger.log(
+      `Ready to upload ${files.length} files:`,
+      files.map((v) => chalk.bold(v.name)).join(', '),
+    )
 
     await spinner(`Uploading...`, async () => {
       const rsp = await octokit.rest.gists.update({
@@ -55,7 +58,11 @@ export async function toUpload(
     })
 
     await writeChecksums(files)
-    getEnv('UPDOWN_QUIET') && logger.logKeep(`Uploaded ${files.length} files:`, files.map((v) => chalk.bold(v.name)).join(', '))
+    getEnv('UPDOWN_QUIET') &&
+      logger.logKeep(
+        `Uploaded ${files.length} files:`,
+        files.map((v) => chalk.bold(v.name)).join(', '),
+      )
     logger.log(chalk.green('Uploaded successfully to the Gist!'))
     logger.log('HTML URL:', gistUrl)
   } catch (error) {

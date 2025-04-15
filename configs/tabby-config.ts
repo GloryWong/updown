@@ -8,10 +8,16 @@ export default {
     const fileLocations = [
       {
         name: 'darwin',
-        value: path.join(home, 'Library/Application Support/tabby', configFile),
+        value: path.join(
+          home,
+          'Library',
+          'Application Support',
+          'tabby',
+          configFile,
+        ),
       },
-      { name: 'win32', value: path.join(home, 'AppData/Tabby', configFile) },
-      { name: 'linux', value: path.join(home, '.config/tabby', configFile) },
+      { name: 'win32', value: path.join(home, 'AppData', 'Tabby', configFile) },
+      { name: 'linux', value: path.join(home, '.config', 'tabby', configFile) },
     ]
 
     const platform = os.platform()

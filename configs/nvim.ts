@@ -1,5 +1,5 @@
 import { Config } from '../types/configs.d.ts'
-import { $, fs, path } from 'zx'
+import { fs, path } from 'zx'
 import { spinnerExec } from '../utils/spinnerExec.ts'
 
 export default {
@@ -18,7 +18,7 @@ export default {
       'NeoVim config archived successfully.',
       ($) =>
         $({
-          cwd: NVM_CONFIG_DIR
+          cwd: NVM_CONFIG_DIR,
         })`tar --exclude-vcs -cf - . | gzip -nc > ${filePath}`,
     )
   },

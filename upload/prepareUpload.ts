@@ -43,24 +43,40 @@ export async function prepareUpload(configs: Configs) {
   const home = os.homedir()
   const interactive = !!getEnv('UPDOWN_INTERACTIVE')
   logger.log('Prepare for upload:')
-  getEnv('UPDOWN_UPLOAD_FORCE') && logger.log(chalk.yellow('Upload all files without checking their changes'))
+  getEnv('UPDOWN_UPLOAD_FORCE') &&
+    logger.log(chalk.yellow('Upload all files without checking their changes'))
   logger.log()
 
   for (const { name, getFilePath, beforeUpload } of configs) {
     try {
       logger.log(`[${name}]`)
 
-      const filePath = await getFilePath({ root: ROOT, home, tmp: TMP_PATH, interactive })
+      const filePath = await getFilePath({
+        root: ROOT,
+        home,
+        tmp: TMP_PATH,
+        interactive,
+      })
 
       if (beforeUpload) {
-        await beforeUpload({ root: ROOT, home, tmp: TMP_PATH, interactive, filePath })
+        await beforeUpload({
+          root: ROOT,
+          home,
+          tmp: TMP_PATH,
+          interactive,
+          filePath,
+        })
       }
 
       logger.log('Local file path:', filePath)
-      const { valid, message, content, warn } = await spinner('Validating file path...', () => validateFile(
-        name,
-        filePath,
-      ))
+      const { valid, message, content, warn } = await spinner(
+        'Validating file path...',
+        () =>
+          validateFile(
+            name,
+            filePath,
+          ),
+      )
       if (valid) {
         files.push({ name, content, path: filePath })
       } else {
