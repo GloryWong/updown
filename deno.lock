@@ -7,7 +7,7 @@
     "npm:@octokit/rest@^21.1.1": "21.1.1_@octokit+core@6.1.4",
     "npm:@types/node@*": "22.12.0",
     "npm:strip-ansi@^7.1.0": "7.1.0",
-    "npm:zx@^8.5.2": "8.5.2"
+    "npm:zx@^8.5.3": "8.5.3"
   },
   "jsr": {
     "@std/assert@1.0.11": {
@@ -159,8 +159,8 @@
     "universal-user-agent@7.0.2": {
       "integrity": "sha512-0JCqzSKnStlRRQfCdowvqy3cy0Dvtlb8xecj/H8JFZuCze4rwjPZQOgvFvn0Ws/usCHQFGpyr+pB9adaGwXn4Q=="
     },
-    "zx@8.5.2": {
-      "integrity": "sha512-eIxjTkCtlzvDNRhw3RD1gGBPA4nxOTn6PafpKl+MW4eE2jR/u/R6mqq7oyUCXwarM5DSP96kWtq6XkrL2kSFrg=="
+    "zx@8.5.3": {
+      "integrity": "sha512-TsGLAt8Ngr4wDXLZmN9BT+6FWVLFbqdQ0qpXkV3tIfH7F+MgN/WUeSY7W4nNqAntjWunmnRaznpyxtJRPhCbUQ=="
     }
   },
   "workspace": {
@@ -172,7 +172,7 @@
         "npm:@octokit/plugin-retry@^7.2.1",
         "npm:@octokit/rest@^21.1.1",
         "npm:strip-ansi@^7.1.0",
-        "npm:zx@^8.5.2"
+        "npm:zx@^8.5.3"
       ]
     }
   }
