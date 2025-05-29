@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.7](https://github.com/GloryWong/updown/compare/v1.5.6...v1.5.7) (2025-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency zx to ^8.5.4 ([#31](https://github.com/GloryWong/updown/issues/31)) ([90760d3](https://github.com/GloryWong/updown/commit/90760d3aae4fa125a3caf1273e8e8cd6d62858cc))
+* **deps:** update octokit monorepo ([ee7b069](https://github.com/GloryWong/updown/commit/ee7b06970c74089f9e0ca88d7f7c99168997404f))
+* **deps:** update octokit monorepo (major) ([ab0865c](https://github.com/GloryWong/updown/commit/ab0865c8cb1dae7a289275d100d5ec3de4edef63))
+
 ## [1.5.6](https://github.com/GloryWong/updown/compare/v1.5.5...v1.5.6) (2025-04-22)
 
 
