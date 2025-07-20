@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.8](https://github.com/GloryWong/updown/compare/v1.5.7...v1.5.8) (2025-07-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency zx to ^8.5.5 ([#34](https://github.com/GloryWong/updown/issues/34)) ([8427f94](https://github.com/GloryWong/updown/commit/8427f943ec90a5206f836273e8af00360c1287b9))
+* **deps:** update dependency zx to ^8.6.0 ([#36](https://github.com/GloryWong/updown/issues/36)) ([caa9204](https://github.com/GloryWong/updown/commit/caa9204b670432a2ee4ded1b9f9c14ede466b7e0))
+* **deps:** update dependency zx to ^8.6.1 ([#37](https://github.com/GloryWong/updown/issues/37)) ([5623ccd](https://github.com/GloryWong/updown/commit/5623ccd64694bd491658754a0f9fa7ad7ae4b6ad))
+* **deps:** update dependency zx to ^8.6.2 ([#38](https://github.com/GloryWong/updown/issues/38)) ([50af3e4](https://github.com/GloryWong/updown/commit/50af3e49b9c7c96c8804d3aba23c9b5359c8d2e7))
+* **deps:** update dependency zx to ^8.7.1 ([#39](https://github.com/GloryWong/updown/issues/39)) ([082b133](https://github.com/GloryWong/updown/commit/082b1334e91a41c760137d32f5be0fcbb13a9b97))
+
 ## [1.5.7](https://github.com/GloryWong/updown/compare/v1.5.6...v1.5.7) (2025-05-29)
 
 
