@@ -3,6 +3,6 @@
     "@octokit/plugin-retry": "^8.0.1",
     "@octokit/rest": "^22.0.0",
     "strip-ansi": "^7.1.0",
-    "zx": "^8.7.1"
+    "zx": "^8.7.2"
   }
 }
