@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@octokit/plugin-retry": "^8.0.3",
+    "@octokit/plugin-retry": "^8.1.0",
     "@octokit/rest": "^22.0.1",
     "strip-ansi": "^7.1.2",
     "zx": "^8.8.5"
