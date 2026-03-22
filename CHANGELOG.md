@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.9](https://github.com/GloryWong/updown/compare/v1.5.8...v1.5.9) (2026-03-22)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#61](https://github.com/GloryWong/updown/issues/61)) ([74e58b8](https://github.com/GloryWong/updown/commit/74e58b8c4656915dac0713db484bdd013fb40763))
+* **deps:** update dependency @octokit/plugin-retry to ^8.1.0 ([#58](https://github.com/GloryWong/updown/issues/58)) ([2cb9487](https://github.com/GloryWong/updown/commit/2cb948701a9fa164926bd7b8fda6105019e0a857))
+
 ## [1.5.8](https://github.com/GloryWong/updown/compare/v1.5.7...v1.5.8) (2025-11-10)
 
 
