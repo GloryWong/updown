@@ -3,10 +3,10 @@
   "specifiers": {
     "jsr:@std/assert@1": "1.0.11",
     "jsr:@std/internal@^1.0.5": "1.0.5",
-    "npm:@octokit/plugin-retry@^8.0.3": "8.0.3_@octokit+core@7.0.6",
+    "npm:@octokit/plugin-retry@^8.1.0": "8.1.0_@octokit+core@7.0.6",
     "npm:@octokit/rest@^22.0.1": "22.0.1_@octokit+core@7.0.6",
     "npm:@types/node@*": "22.12.0",
-    "npm:strip-ansi@^7.1.2": "7.1.2",
+    "npm:strip-ansi@^7.2.0": "7.2.0",
     "npm:zx@^8.8.5": "8.8.5"
   },
   "jsr": {
@@ -74,8 +74,8 @@
         "@octokit/types"
       ]
     },
-    "@octokit/plugin-retry@8.0.3_@octokit+core@7.0.6": {
-      "integrity": "sha512-vKGx1i3MC0za53IzYBSBXcrhmd+daQDzuZfYDd52X5S0M2otf3kVZTVP8bLA3EkU0lTvd1WEC2OlNNa4G+dohA==",
+    "@octokit/plugin-retry@8.1.0_@octokit+core@7.0.6": {
+      "integrity": "sha512-O1FZgXeiGb2sowEr/hYTr6YunGdSAFWnr2fyW39Ah85H8O33ELASQxcvOFF5LE6Tjekcyu2ms4qAzJVhSaJxTw==",
       "dependencies": [
         "@octokit/core",
         "@octokit/request-error",
@@ -132,8 +132,8 @@
     "fast-content-type-parse@3.0.0": {
       "integrity": "sha512-ZvLdcY8P+N8mGQJahJV5G4U88CSvT1rP8ApL6uETe88MBXrBHAkZlSEySdUlyztF7ccb+Znos3TFqaepHxdhBg=="
     },
-    "strip-ansi@7.1.2": {
-      "integrity": "sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==",
+    "strip-ansi@7.2.0": {
+      "integrity": "sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==",
       "dependencies": [
         "ansi-regex"
       ]
@@ -155,9 +155,9 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@octokit/plugin-retry@^8.0.3",
+        "npm:@octokit/plugin-retry@^8.1.0",
         "npm:@octokit/rest@^22.0.1",
-        "npm:strip-ansi@^7.1.2",
+        "npm:strip-ansi@^7.2.0",
         "npm:zx@^8.8.5"
       ]
     }
