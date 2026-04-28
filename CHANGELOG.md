@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.10](https://github.com/GloryWong/updown/compare/v1.5.9...v1.5.10) (2026-04-28)
+
+
+### Bug Fixes
+
+* force version ([cd49d52](https://github.com/GloryWong/updown/commit/cd49d5227cc482e6f4f5fd69eb193eda8d60817f))
+
 ## [1.5.9](https://github.com/GloryWong/updown/compare/v1.5.8...v1.5.9) (2026-04-26)
 
 
